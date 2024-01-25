@@ -27,11 +27,23 @@ export function deleteToDoListItem(id) {
 }
 
 export function updateToDoListItem(id, title, description) {
-    console.log(id, title, description)
     return toDoList
         .post(`updateItem`, {
 
             id: `${id}`,
+            title: `${title}`,
+            description: `${description}`
+
+        })
+        .then(response => response)
+        .catch((error) => {
+            return error;
+        })
+}
+
+export function addToDoListItem(title, description) {
+    return toDoList
+        .post(`item`, {
             title: `${title}`,
             description: `${description}`
 

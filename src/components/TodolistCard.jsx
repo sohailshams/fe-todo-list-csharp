@@ -34,7 +34,7 @@ function TodolistCard({ id, title, description, setItems, setErrorMessage, index
                         <p>{description}</p>
                     </div>
                 ) : (
-                    <EditTask id={id} title={title} description={description} setIsTasks={setIsTasks} setItems={setItems} index={index} setErrorMessage={setErrorMessage} />
+                    <EditTask key={id} id={id} title={title} description={description} setIsTasks={setIsTasks} setItems={setItems} index={index} setErrorMessage={setErrorMessage} />
                 )
             }
         </>
