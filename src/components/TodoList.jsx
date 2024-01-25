@@ -21,8 +21,8 @@ function TodoList() {
 
             <p className={errorMessage ? "text-center bg-red-500 py-3 text-white font-bold" : "hidden"} id="error">{errorMessage}</p>
             <div className="w-[80%] flex flex-wrap gap-x-5 mx-auto shadow-lg px-7 py-5">
-                {items?.map((item) => {
-                    return <TodolistCard key={item.id} title={item.title} description={item.description} setItems={setItems} id={item.id} setErrorMessage={setErrorMessage} />
+                {items?.map((item, index) => {
+                    return <TodolistCard key={item.id} title={item.title} description={item.description} setItems={setItems} id={item.id} setErrorMessage={setErrorMessage} index={index} />
                 })}
             </div>
         </>

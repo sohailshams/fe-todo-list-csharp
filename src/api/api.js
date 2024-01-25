@@ -14,13 +14,27 @@ export function getToDoList() {
 }
 
 export function deleteToDoListItem(id) {
-
-    console.log('id in api', id)
     return toDoList
         .delete(`item`, {
             params: {
                 id: `${id}`,
             }
+        })
+        .then(response => response)
+        .catch((error) => {
+            return error;
+        })
+}
+
+export function updateToDoListItem(id, title, description) {
+    console.log(id, title, description)
+    return toDoList
+        .post(`updateItem`, {
+
+            id: `${id}`,
+            title: `${title}`,
+            description: `${description}`
+
         })
         .then(response => response)
         .catch((error) => {

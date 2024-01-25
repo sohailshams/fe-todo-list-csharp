@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { deleteToDoListItem } from '../api/api';
+import EditTask from './EditTask';
 
-function TodolistCard({ id, title, description, setItems, setErrorMessage }) {
+function TodolistCard({ id, title, description, setItems, setErrorMessage, index }) {
+    const [isTasks, setIsTasks] = useState(true);
 
     const handleDelete = (e) => {
         deleteToDoListItem(id).then(response => {
@@ -18,16 +20,24 @@ function TodolistCard({ id, title, description, setItems, setErrorMessage }) {
         })
     }
     return (
-        <div className='border border-[1px] border-black my-3 w-48 py-3 px-1 text-center'>
+        <>
+            {
+                isTasks ? (
+                    <div className='border border-[1px] border-black my-3 w-80 py-3 px-1 text-center'>
 
-            <div className='mb-3 flex justify-center items-center gap-x-1'>
-                <i onClick={handleDelete}
-                    name={id} className="fa-solid fa-trash"></i>
-                <i className="pl-3 fa-solid fa-pencil"></i>
-                <h2 className='pl-1 text-lg font-bold mb-1'>{title}</h2>
-            </div>
-            <p>{description}</p>
-        </div>
+                        <div className='mb-3 flex justify-center items-center gap-x-1'>
+                            <i onClick={handleDelete}
+                                name={id} className="fa-solid fa-trash"></i>
+                            <i onClick={() => setIsTasks(false)} className="pl-3 fa-solid fa-pencil"></i>
+                            <h2 className='pl-1 text-lg font-bold mb-1'>{title}</h2>
+                        </div>
+                        <p>{description}</p>
+                    </div>
+                ) : (
+                    <EditTask id={id} title={title} description={description} setIsTasks={setIsTasks} setItems={setItems} index={index} setErrorMessage={setErrorMessage} />
+                )
+            }
+        </>
     )
 }
 
